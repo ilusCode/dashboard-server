@@ -1,0 +1,23 @@
+.app-home-image {
+    height: 120px;
+    max-width: calc(100% - 2rem);
+    object-fit: contain;
+}
+
+.app-home-description {
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-box-pack: center;
+    line-clamp: 3;
+    -webkit-line-clamp: 3;
+    min-height: 3lh;
+    overflow: hidden;
+}
+
+.app-home-app-name {
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    line-clamp: 1;
+    -webkit-line-clamp: 1;
+    overflow: hidden;
+}
