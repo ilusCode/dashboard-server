@@ -62,7 +62,7 @@
         },
         "serve": {
           "options": {
-            "allowedHosts": ["localhost", "192.168.1.200", "100.101.112.126:4200"]
+            "allowedHosts": ["localhost", "192.168.1.200", "100.101.112.126"]
           },
           "builder": "@angular/build:dev-server",
           "configurations": {
