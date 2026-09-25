@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { CatalogAppService } from '../../services/catalog-app-service';
 import { CatalogAppResponse } from '../../model/catalog-app-response';
+import { CatalogAppDataResponse } from '../../model/catalog-app-data-response';
 
 @Component({
   imports: [],
@@ -12,13 +13,12 @@ export class HomePage implements OnInit {
 
   constructor(private catalogAppService: CatalogAppService) { }
   title = 'Dashboard Server';
-  catalogApps: CatalogAppResponse[] = [];
+  catalogApps: CatalogAppDataResponse[] = [];
 
   ngOnInit(): void {
     this.catalogAppService.getApps()
-      .then(apps => {
-        this.catalogApps.push(...apps);
-        console.log('Apps fetched successfully:', this.catalogApps);
+      .subscribe(response => {
+        this.catalogApps.push(...response.data);
       });
   }
 }
