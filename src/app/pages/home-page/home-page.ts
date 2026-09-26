@@ -18,7 +18,13 @@ export class HomePage implements OnInit {
   ngOnInit(): void {
     this.catalogAppService.getApps()
       .subscribe(response => {
-        this.catalogApps.push(...response.data);
+        response.data.forEach(app => {
+          this.catalogAppService.getAppDetails(app._id)
+          .subscribe(responseDetails => {
+            app.iconImage = responseDetails.data.images.filter(it=>it.type =="icon")[0].url
+          })
+          this.catalogApps.push(app);
+        });
       });
   }
 }
