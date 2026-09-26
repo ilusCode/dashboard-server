@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { CatalogAppService } from '../../services/catalog-app-service';
-import { CatalogAppResponse } from '../../model/catalog-app-response';
 import { CatalogAppDataResponse } from '../../model/catalog-app-data-response';
 
 @Component({
