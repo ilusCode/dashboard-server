@@ -10,7 +10,7 @@
     -webkit-box-pack: center;
     line-clamp: 3;
     -webkit-line-clamp: 3;
-    min-height: 3lh;
+    min-height: 1lh;
     overflow: hidden;
 }
 
