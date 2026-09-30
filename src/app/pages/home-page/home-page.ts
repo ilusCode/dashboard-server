@@ -1,9 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { CatalogAppService } from '../../services/catalog-app-service';
 import { CatalogAppDataResponse } from '../../model/catalog-app-data-response';
+import { ApplicationCard } from '../../components/application-card/application-card';
+import { NoApplications } from '../../components/no-applications/no-applications';
+import { NavbarHome } from '../../components/navbar-home/navbar-home';
 
 @Component({
-  imports: [],
+  imports: [ApplicationCard, NoApplications, NavbarHome],
   selector: 'app-home-page',
   styleUrl: './home-page.css',
   templateUrl: './home-page.html',
