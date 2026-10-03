@@ -21,3 +21,64 @@
     -webkit-line-clamp: 1;
     overflow: hidden;
 }
+
+.application-card-delete {
+    position: absolute;
+    top: 1.7rem;
+    right: 0.75rem;
+    z-index: 2;
+    width: 2.2rem;
+    height: 2.2rem;
+    border: 0;
+    border-radius: 999px;
+    display: grid;
+    place-items: center;
+    font-size: 1.2rem;
+    line-height: 1;
+    cursor: pointer;
+}
+
+.application-card-delete span {
+    display: block;
+    transform: translateY(-1px);
+}
+
+/* Estilo base elegante */
+.delete-style-glass {
+    background: rgba(255, 255, 255, 0.9);
+    color: #b42318;
+    border: 1px solid rgba(180, 35, 24, 0.18);
+    box-shadow: 0 6px 18px rgba(15, 23, 42, 0.12);
+    backdrop-filter: blur(4px);
+}
+
+.delete-style-glass:hover,
+.delete-style-glass:focus-visible {
+    background: #fff1f0;
+    box-shadow: 0 10px 22px rgba(180, 35, 24, 0.18);
+}
+
+/* Variante 2: suave */
+.delete-style-soft {
+    background: #fee4e2;
+    color: #b42318;
+    box-shadow: 0 6px 18px rgba(180, 35, 24, 0.12);
+}
+
+.delete-style-soft:hover,
+.delete-style-soft:focus-visible {
+    background: #fecfc9;
+}
+
+/* Variante 3: outlined */
+.delete-style-outline {
+    background: rgba(15, 23, 42, 0.15);
+    color: #ffffff;
+    border: 1px solid rgba(255, 255, 255, 0.8);
+    box-shadow: 0 8px 18px rgba(15, 23, 42, 0.18);
+}
+
+.delete-style-outline:hover,
+.delete-style-outline:focus-visible {
+    background: rgba(15, 23, 42, 0.32);
+}

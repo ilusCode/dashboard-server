@@ -1,4 +1,12 @@
-<div class="card h-100 d-flex flex-column border-0 shadow-sm rounded-4 overflow-hidden">
+<div
+    class="card application-card h-100 d-flex flex-column border-0 shadow-sm rounded-4 overflow-hidden position-relative">
+    <span class="badge text-bg-success">Success</span>
+
+    <button type="button" class="application-card-delete delete-style-glass" aria-label="Detele application"
+        title="Detele application">
+        <span aria-hidden="true">&times;</span>
+    </button>
+
     <div class="bg-light p-3 text-center">
         <img [src]="appDetail.iconImage" class="img-fluid mx-auto app-home-image" alt="{{ appDetail.name }} icon">
     </div>
@@ -10,7 +18,8 @@
 
     @if (appDetail.url && appDetail.url !== "") {
     <div class="card-footer bg-transparent border-0 pt-0 pb-3 px-3 mt-auto">
-        <a [href]="appDetail.url" class="btn btn-primary rounded-pill w-100" target="_blank" rel="noopener noreferrer">Go to the app</a>
+        <a [href]="appDetail.url" class="btn btn-primary rounded-pill w-100" target="_blank"
+            rel="noopener noreferrer">Go to the app</a>
     </div>
     }
 </div>
