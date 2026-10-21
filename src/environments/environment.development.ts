@@ -1,6 +1,6 @@
 export const environment = {
     env: "prod",
     api: {
-        catalogApp: "http://iluscode-server.tail401370.ts.net:4000"
+        catalogApp: "http://127.0.0.1:4000"
     }
 };
