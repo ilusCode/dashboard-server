@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, signal } from '@angular/core';
 import { CatalogAppService } from '../../services/catalog-app-service';
 import { CatalogAppDataResponse } from '../../model/catalog-app-data-response';
 import { ApplicationCard } from '../../components/application-card/application-card';
@@ -15,18 +15,27 @@ export class HomePage implements OnInit {
 
   constructor(private catalogAppService: CatalogAppService) { }
   title = 'Dashboard Server';
-  catalogApps: CatalogAppDataResponse[] = [];
+  catalogApps = signal<CatalogAppDataResponse[]>([]);
 
   ngOnInit(): void {
+    this.loadApps();
+  }
+
+  loadApps(): void {
     this.catalogAppService.getApps()
       .subscribe(response => {
+        this.catalogApps.set(response.data);
         response.data.forEach(app => {
           this.catalogAppService.getAppDetails(app._id)
           .subscribe(responseDetails => {
-            app.iconImage = responseDetails.data.images.filter(it=>it.type =="icon")[0].url
+            const iconImage = responseDetails.data.images.filter(it=>it.type =="icon")[0].url
+            this.catalogApps.update(apps => apps.map(it => it._id === app._id ? { ...it, iconImage } : it));
           })
-          this.catalogApps.push(app);
         });
       });
+  }
+
+  removeApp(appId: string): void {
+    this.catalogApps.update(apps => apps.filter(it => it._id !== appId));
   }
 }
