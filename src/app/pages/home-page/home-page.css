@@ -22,6 +22,25 @@
     display: block;
 }
 
+/* En pantallas pequeñas solo se muestra el icono */
+@media (max-width: 770px) {
+    /* Titulo arriba y boton debajo, alineado a la derecha */
+    .page-header {
+        flex-direction: column;
+        align-items: stretch !important;
+    }
+
+    .register-app-button {
+        align-self: flex-end;
+        padding: 0.5rem;
+    }
+
+    .register-app-button .register-app-icon {
+        width: 1.8rem;
+        height: 1.8rem;
+    }
+}
+
 /* Variante 1: glass (combina con el boton de borrar) */
 .register-style-glass {
     background: rgba(255, 255, 255, 0.9);
