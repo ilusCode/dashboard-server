@@ -1,11 +1,26 @@
 <app-navbar-home></app-navbar-home>
 
 <div class="container mt-4">
-    <section>
-        <h1>{{title}}</h1>
-        <p>Welcome to the Dashboard Server application!</p>
+    <section class="page-header d-flex flex-wrap align-items-center justify-content-between gap-3">
+        <div class="page-header-title-group">
+            <span class="page-header-icon" aria-hidden="true">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor">
+                    <rect x="3" y="3" width="8" height="8" rx="2" />
+                    <rect x="13" y="3" width="8" height="8" rx="2" />
+                    <rect x="3" y="13" width="8" height="8" rx="2" />
+                    <rect x="13" y="13" width="8" height="8" rx="2" />
+                </svg>
+            </span>
+            <div>
+                <h1 class="page-title">{{title}}</h1>
+                <p class="page-subtitle">Welcome to the Dashboard Server application!</p>
+            </div>
+        </div>
+        <a routerLink="/register-app" class="btn register-app-button register-style-glass"
+            title="Register a new application">
+            Register new application
+        </a>
     </section>
-
     <div class="container text-center">
         <div class="row">
             @for (app of catalogApps(); track app._id) {
@@ -13,7 +28,7 @@
                 <app-application-card [appDetail]="app" (appDeleted)="removeApp($event)"></app-application-card>
             </div>
             }@empty {
-                <app-no-applications></app-no-applications>
+            <app-no-applications></app-no-applications>
             }
         </div>
     </div>

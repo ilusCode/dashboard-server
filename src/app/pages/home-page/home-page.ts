@@ -4,9 +4,10 @@ import { CatalogAppDataResponse } from '../../model/catalog-app-data-response';
 import { ApplicationCard } from '../../components/application-card/application-card';
 import { NoApplications } from '../../components/no-applications/no-applications';
 import { NavbarHome } from '../../components/navbar-home/navbar-home';
+import { RouterLink } from '@angular/router';
 
 @Component({
-  imports: [ApplicationCard, NoApplications, NavbarHome],
+  imports: [ApplicationCard, NoApplications, NavbarHome, RouterLink],
   selector: 'app-home-page',
   styleUrl: './home-page.css',
   templateUrl: './home-page.html',
@@ -28,7 +29,7 @@ export class HomePage implements OnInit {
         response.data.forEach(app => {
           this.catalogAppService.getAppDetails(app._id)
           .subscribe(responseDetails => {
-            const iconImage = responseDetails.data.images.filter(it=>it.type =="icon")[0].url
+            const iconImage = responseDetails.data.images.find(it => it.type == "icon")?.url ?? ""
             this.catalogApps.update(apps => apps.map(it => it._id === app._id ? { ...it, iconImage } : it));
           })
         });
