@@ -1,0 +1,6 @@
+# Configuracion del formulario de registro de aplicaciones
+
+# Tipos de imagen disponibles en la seccion "Images"
+imageTypes:
+  - Icon
+  - Banner
