@@ -4,6 +4,7 @@ import { Router, RouterLink } from '@angular/router';
 import { NavbarHome } from '../../components/navbar-home/navbar-home';
 import { NewAppRequest } from '../../model/new-app-request';
 import { CatalogAppService } from '../../services/catalog-app-service';
+import { registerAppConfig } from '../../interfaces/register-app-config';
 
 @Component({
   imports: [NavbarHome, RouterLink, ReactiveFormsModule],
@@ -13,7 +14,7 @@ import { CatalogAppService } from '../../services/catalog-app-service';
 })
 export class RegisterAppPage {
   title = 'Register new application';
-  imageTypes = ['icon', 'banner'];
+  imageTypes = registerAppConfig.imageTypes;
 
   submitting = signal(false);
   errorMessage = signal('');
@@ -26,7 +27,7 @@ export class RegisterAppPage {
     url: ['', Validators.required],
     name: ['', Validators.required],
     description: [''],
-    images: this.fb.array([this.createImageGroup()]),
+    images: this.fb.array<ReturnType<RegisterAppPage['createImageGroup']>>([]),
   });
 
   get images(): FormArray {
@@ -36,7 +37,7 @@ export class RegisterAppPage {
   createImageGroup() {
     return this.fb.nonNullable.group({
       url: ['', Validators.required],
-      type: ['icon', Validators.required],
+      type: ['', Validators.required],
     });
   }
 

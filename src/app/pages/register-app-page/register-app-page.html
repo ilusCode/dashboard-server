@@ -24,21 +24,21 @@
                 <div class="col-12 col-md-6">
                     <label for="name" class="form-label">Name</label>
                     <input id="name" type="text" class="form-control register-form-control" formControlName="name"
-                        placeholder="Iluscode Server" [class.is-invalid]="isInvalid('name')">
+                        placeholder="e.g. Grafana" [class.is-invalid]="isInvalid('name')">
                     <div class="invalid-feedback">Name is required.</div>
                 </div>
 
                 <div class="col-12 col-md-6">
                     <label for="url" class="form-label">URL</label>
                     <input id="url" type="text" class="form-control register-form-control" formControlName="url"
-                        placeholder="iluscode.local" [class.is-invalid]="isInvalid('url')">
+                        placeholder="e.g. https://grafana.iluscode.local" [class.is-invalid]="isInvalid('url')">
                     <div class="invalid-feedback">URL is required.</div>
                 </div>
 
                 <div class="col-12">
                     <label for="description" class="form-label">Description</label>
                     <textarea id="description" class="form-control register-form-control" rows="3"
-                        formControlName="description" placeholder="Iluscode Server"></textarea>
+                        formControlName="description" placeholder="e.g. A powerful open-source platform for data visualization and analytics"></textarea>
                 </div>
             </div>
         </section>
@@ -59,7 +59,7 @@
                         <div class="col-12 col-md-7">
                             <label [for]="'image-url-' + i" class="form-label visually-hidden">Image URL</label>
                             <input [id]="'image-url-' + i" type="url" class="form-control register-form-control"
-                                formControlName="url" placeholder="https://..."
+                                formControlName="url" placeholder="e.g. https://grafana.iluscode.local/grafana-icon.svg"
                                 [class.is-invalid]="isInvalid('images.' + i + '.url')">
                             <div class="invalid-feedback">Image URL is required.</div>
                         </div>
@@ -67,8 +67,9 @@
                             <label [for]="'image-type-' + i" class="form-label visually-hidden">Image type</label>
                             <select [id]="'image-type-' + i" class="form-select register-form-control"
                                 formControlName="type" [class.is-invalid]="isInvalid('images.' + i + '.type')">
+                                <option value="" disabled>Select a type</option>
                                 @for (type of imageTypes; track type) {
-                                    <option [value]="type">{{type}}</option>
+                                    <option [value]="type.toLowerCase()">{{type}}</option>
                                 }
                             </select>
                             <div class="invalid-feedback">Type is required.</div>
