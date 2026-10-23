@@ -1,0 +1,41 @@
+.app-navbar {
+    padding: 0.6rem 0;
+    background: linear-gradient(135deg, #0f172a 0%, #1e3a8a 55%, #1d4ed8 100%);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+    box-shadow: 0 8px 24px rgba(15, 23, 42, 0.25);
+    backdrop-filter: blur(6px);
+}
+
+/* Linea de acento inferior */
+.app-navbar::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    height: 2px;
+    background: linear-gradient(90deg, transparent, rgba(147, 197, 253, 0.7), transparent);
+}
+
+.app-navbar-brand {
+    margin: 0;
+    padding: 0.25rem 0.75rem;
+    border-radius: 999px;
+    transition: transform 0.15s ease, background 0.15s ease;
+}
+
+.app-navbar-brand:hover,
+.app-navbar-brand:focus-visible {
+    transform: translateY(-1px);
+    background: rgba(255, 255, 255, 0.08);
+}
+
+.app-navbar-brand img {
+    filter: drop-shadow(0 4px 10px rgba(0, 0, 0, 0.3));
+}
+
+@media (max-width: 575.98px) {
+    .app-navbar-brand img {
+        height: 40px;
+    }
+}
