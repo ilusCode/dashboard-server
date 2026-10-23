@@ -1,0 +1,99 @@
+<app-navbar-home></app-navbar-home>
+
+<div class="container mt-4 mb-5">
+    <section class="page-header register-form-page-header d-flex flex-wrap align-items-center justify-content-between gap-3">
+        <div class="page-header-title-group">
+            <span class="page-header-icon" aria-hidden="true">+</span>
+            <div>
+                <h1 class="page-title">{{title}}</h1>
+                <p class="page-subtitle">Add a new application to the dashboard catalog.</p>
+            </div>
+        </div>
+        <a routerLink="/home" class="btn register-form-button register-form-secondary">Back</a>
+    </section>
+
+    <form [formGroup]="form" (ngSubmit)="onSubmit()" novalidate class="register-form-card">
+        @if (errorMessage()) {
+            <div class="alert alert-danger rounded-4" role="alert">{{errorMessage()}}</div>
+        }
+
+        <section class="register-form-section">
+            <h2 class="register-form-section-title">General information</h2>
+
+            <div class="row g-3">
+                <div class="col-12 col-md-6">
+                    <label for="name" class="form-label">Name</label>
+                    <input id="name" type="text" class="form-control register-form-control" formControlName="name"
+                        placeholder="Iluscode Server" [class.is-invalid]="isInvalid('name')">
+                    <div class="invalid-feedback">Name is required.</div>
+                </div>
+
+                <div class="col-12 col-md-6">
+                    <label for="url" class="form-label">URL</label>
+                    <input id="url" type="text" class="form-control register-form-control" formControlName="url"
+                        placeholder="iluscode.local" [class.is-invalid]="isInvalid('url')">
+                    <div class="invalid-feedback">URL is required.</div>
+                </div>
+
+                <div class="col-12">
+                    <label for="description" class="form-label">Description</label>
+                    <textarea id="description" class="form-control register-form-control" rows="3"
+                        formControlName="description" placeholder="Iluscode Server"></textarea>
+                </div>
+            </div>
+        </section>
+
+        <section class="register-form-section">
+            <div class="d-flex align-items-center justify-content-between gap-2 mb-3">
+                <h2 class="register-form-section-title mb-0">Images</h2>
+                <button type="button" class="btn register-form-button register-form-secondary btn-sm"
+                    (click)="addImage()">
+                    <span class="register-form-add-icon" aria-hidden="true">+</span>
+                    Add image
+                </button>
+            </div>
+
+            <div formArrayName="images" class="d-grid gap-2">
+                @for (image of images.controls; track image; let i = $index) {
+                    <div class="register-form-image row g-2 align-items-start" [formGroupName]="i">
+                        <div class="col-12 col-md-7">
+                            <label [for]="'image-url-' + i" class="form-label visually-hidden">Image URL</label>
+                            <input [id]="'image-url-' + i" type="url" class="form-control register-form-control"
+                                formControlName="url" placeholder="https://..."
+                                [class.is-invalid]="isInvalid('images.' + i + '.url')">
+                            <div class="invalid-feedback">Image URL is required.</div>
+                        </div>
+                        <div class="col-9 col-md-4">
+                            <label [for]="'image-type-' + i" class="form-label visually-hidden">Image type</label>
+                            <select [id]="'image-type-' + i" class="form-select register-form-control"
+                                formControlName="type" [class.is-invalid]="isInvalid('images.' + i + '.type')">
+                                @for (type of imageTypes; track type) {
+                                    <option [value]="type">{{type}}</option>
+                                }
+                            </select>
+                            <div class="invalid-feedback">Type is required.</div>
+                        </div>
+                        <div class="col-3 col-md-1 d-flex justify-content-end">
+                            <button type="button" class="register-form-remove" (click)="removeImage(i)"
+                                aria-label="Remove image" title="Remove image">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                    </div>
+                } @empty {
+                    <p class="register-form-empty mb-0">No images added.</p>
+                }
+            </div>
+        </section>
+
+        <div class="register-form-actions">
+            <a routerLink="/home" class="btn register-form-button register-form-secondary">Cancel</a>
+            <button type="submit" class="btn register-form-button register-form-primary" [disabled]="submitting()">
+                @if (submitting()) {
+                    <span class="spinner-border spinner-border-sm" aria-hidden="true"></span>
+                }
+                Register
+            </button>
+        </div>
+    </form>
+</div>
