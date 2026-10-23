@@ -16,6 +16,16 @@ export class ApplicationCard {
 
   @Output() appDeleted = new EventEmitter<string>();
 
+  readonly fallbackImage = 'assets/images/no-image.png';
+
+  onImageError(event: Event): void {
+    const img = event.target as HTMLImageElement;
+    // Avoid an infinite loop if the fallback image itself fails to load
+    if (!img.src.endsWith(this.fallbackImage)) {
+      img.src = this.fallbackImage;
+    }
+  }
+
   deleteApplication(appId: string): void {
     this.catalogAppService.deleteApp(appId).subscribe(response => {
       if (response.app_id === appId) {

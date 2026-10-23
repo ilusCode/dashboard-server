@@ -6,15 +6,10 @@
     </button>
 
     <div class="application-card-media">
-        @if (appDetail.iconImage && appDetail.iconImage !== "") {
         <div class="application-card-image-overlay">
-            <img [src]="appDetail.iconImage" class="img-fluid mx-auto app-home-image" alt="{{ appDetail.name }}" />
+            <img [src]="appDetail.iconImage || fallbackImage" class="app-home-image" alt="{{ appDetail.name }}"
+                (error)="onImageError($event)" />
         </div>
-        } @else {
-        <div class="application-card-image-overlay">
-            <img src="assets/images/no-image.png" class="img-fluid mx-auto app-home-image" alt=" {{ appDetail.name }} " />
-        </div>
-        }
     </div>
 
     <div class="card-body flex-grow-1 d-flex flex-column">
