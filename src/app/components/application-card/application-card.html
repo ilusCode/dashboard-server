@@ -1,24 +1,31 @@
-<div
-    class="card application-card h-100 d-flex flex-column border-0 shadow-sm rounded-4 overflow-hidden position-relative">
+<div class="card application-card h-100 d-flex flex-column position-relative">
 
     <button type="button" class="application-card-delete delete-style-glass" aria-label="Delete application"
         title="Delete application" (click)="deleteApplication(appDetail._id)">
         <span aria-hidden="true">&times;</span>
     </button>
 
-    <div class="bg-light p-3 text-center">
-        <img [src]="appDetail.iconImage" class="img-fluid mx-auto app-home-image" alt="{{ appDetail.name }} icon">
+    <div class="application-card-media">
+        @if (appDetail.iconImage && appDetail.iconImage !== "") {
+        <div class="application-card-image-overlay">
+            <img [src]="appDetail.iconImage" class="img-fluid mx-auto app-home-image" alt="{{ appDetail.name }}" />
+        </div>
+        } @else {
+        <div class="application-card-image-overlay">
+            <img src="assets/images/no-image.png" class="img-fluid mx-auto app-home-image" alt=" {{ appDetail.name }} " />
+        </div>
+        }
     </div>
 
     <div class="card-body flex-grow-1 d-flex flex-column">
-        <h5 class="card-title app-home-app-name fw-semibold mb-2">{{ appDetail.name }}</h5>
-        <p class="card-text app-home-description text-secondary mb-0">{{ appDetail.description }}</p>
+        <h5 class="card-title app-home-app-name application-card-title">{{ appDetail.name }}</h5>
+        <p class="card-text app-home-description application-card-description">{{ appDetail.description }}</p>
     </div>
 
     @if (appDetail.url && appDetail.url !== "") {
     <div class="card-footer bg-transparent border-0 pt-0 pb-3 px-3 mt-auto">
-        <a [href]="appDetail.url" class="btn btn-primary rounded-pill w-100" target="_blank"
-            rel="noopener noreferrer">Go to the app</a>
+        <a [href]="appDetail.url" class="btn application-card-button w-100" target="_blank" rel="noopener noreferrer">Go
+            to the app</a>
     </div>
     }
 </div>
