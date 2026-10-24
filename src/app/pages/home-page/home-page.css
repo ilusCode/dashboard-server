@@ -41,6 +41,17 @@
     }
 }
 
+/* Aviso flotante al eliminar una aplicacion */
+.app-deleted-alert {
+    position: fixed;
+    top: 1rem;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 1080;
+    width: min(90vw, 28rem);
+    box-shadow: 0 10px 30px rgba(15, 23, 42, 0.15);
+}
+
 /* Variante 1: glass (combina con el boton de borrar) */
 .register-style-glass {
     background: rgba(255, 255, 255, 0.9);

@@ -17,6 +17,8 @@ export class HomePage implements OnInit {
   constructor(private catalogAppService: CatalogAppService) { }
   title = 'Dashboard Server';
   catalogApps = signal<CatalogAppDataResponse[]>([]);
+  deletedMessage = signal('');
+  private deletedMessageTimer?: ReturnType<typeof setTimeout>;
 
   ngOnInit(): void {
     this.loadApps();
@@ -37,6 +39,19 @@ export class HomePage implements OnInit {
   }
 
   removeApp(appId: string): void {
+    const appName = this.catalogApps().find(it => it._id === appId)?.name ?? '';
     this.catalogApps.update(apps => apps.filter(it => it._id !== appId));
+    this.showDeletedMessage(`Application "${appName}" was deleted successfully.`);
+  }
+
+  showDeletedMessage(message: string): void {
+    clearTimeout(this.deletedMessageTimer);
+    this.deletedMessage.set(message);
+    this.deletedMessageTimer = setTimeout(() => this.closeDeletedMessage(), 4000);
+  }
+
+  closeDeletedMessage(): void {
+    clearTimeout(this.deletedMessageTimer);
+    this.deletedMessage.set('');
   }
 }
