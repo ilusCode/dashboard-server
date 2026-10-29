@@ -1,0 +1,50 @@
+<app-navbar-home></app-navbar-home>
+
+@if (deletedMessage()) {
+<div class="alert alert-success alert-dismissible rounded-4 app-deleted-alert" role="alert">
+    {{deletedMessage()}}
+    <button type="button" class="btn-close" aria-label="Close" (click)="closeDeletedMessage()"></button>
+</div>
+}
+
+<div class="container mt-4">
+    <section class="page-header d-flex flex-wrap align-items-center justify-content-between gap-3">
+        <div class="page-header-title-group">
+            <span class="page-header-icon" aria-hidden="true">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor">
+                    <rect x="3" y="3" width="8" height="8" rx="2" />
+                    <rect x="13" y="3" width="8" height="8" rx="2" />
+                    <rect x="3" y="13" width="8" height="8" rx="2" />
+                    <rect x="13" y="13" width="8" height="8" rx="2" />
+                </svg>
+            </span>
+            <div>
+                <h1 class="page-title">{{title}}</h1>
+                <p class="page-subtitle">Welcome to the Dashboard Server application!</p>
+            </div>
+        </div>
+        <a routerLink="/register-app" class="btn register-app-button register-style-glass"
+            title="Register a new application">
+            <span class="register-app-icon" aria-hidden="true">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"
+                    stroke-linecap="round">
+                    <line x1="12" y1="5" x2="12" y2="19" />
+                    <line x1="5" y1="12" x2="19" y2="12" />
+                </svg>
+            </span>
+            <span class="register-app-label">Register new application</span>
+        </a>
+    </section>
+    <div class="container text-center">
+        <div class="row">
+            @for (app of catalogApps(); track app._id) {
+            <div class="col-12 col-lg-3 col-md-4 col-sm-6 mb-4">
+                <app-application-card [appDetail]="app" (appDeleted)="removeApp($event)"></app-application-card>
+            </div>
+            }@empty {
+            <app-no-applications></app-no-applications>
+            }
+        </div>
+    </div>
+
+</div>

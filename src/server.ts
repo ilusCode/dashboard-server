@@ -5,24 +5,36 @@ import {
   writeResponseToNodeResponse,
 } from '@angular/ssr/node';
 import express from 'express';
+import { request } from 'node:http';
 import { join } from 'node:path';
+import { environment } from './environments/environment';
 
 const browserDistFolder = join(import.meta.dirname, '../browser');
+const apiUrl = new URL(environment.api.catalogApp);
 
 const app = express();
 const angularApp = new AngularNodeAppEngine();
 
 /**
- * Example Express Rest API endpoints can be defined here.
- * Uncomment and define endpoints as necessary.
- *
- * Example:
- * ```ts
- * app.get('/api/{*splat}', (req, res) => {
- *   // Handle API request
- * });
- * ```
+ * Proxy /api requests to the catalog API, so the browser only talks to this server.
  */
+app.use('/api', (req, res, next) => {
+  const proxyReq = request(
+    {
+      hostname: apiUrl.hostname,
+      port: apiUrl.port,
+      path: req.originalUrl,
+      method: req.method,
+      headers: { ...req.headers, host: apiUrl.host },
+    },
+    (proxyRes) => {
+      res.writeHead(proxyRes.statusCode ?? 502, proxyRes.headers);
+      proxyRes.pipe(res);
+    },
+  );
+  proxyReq.on('error', next);
+  req.pipe(proxyReq);
+});
 
 /**
  * Serve static files from /browser

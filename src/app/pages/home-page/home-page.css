@@ -1,0 +1,133 @@
+.register-app-button {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.5rem 1.1rem;
+    border-radius: 999px;
+    font-weight: 600;
+    text-decoration: none;
+    transition: background 0.15s ease, box-shadow 0.15s ease, color 0.15s ease;
+}
+
+.register-app-button .register-app-icon {
+    display: grid;
+    place-items: center;
+    width: 1.4rem;
+    height: 1.4rem;
+    flex-shrink: 0;
+    border-radius: 999px;
+}
+
+.register-app-button .register-app-icon svg {
+    display: block;
+}
+
+/* En pantallas pequeñas solo se muestra el icono */
+@media (max-width: 770px) {
+    /* Titulo arriba y boton debajo, alineado a la derecha */
+    .page-header {
+        flex-direction: column;
+        align-items: stretch !important;
+    }
+
+    .register-app-button {
+        align-self: flex-end;
+        padding: 0.5rem;
+    }
+
+    .register-app-button .register-app-icon {
+        width: 1.8rem;
+        height: 1.8rem;
+    }
+}
+
+/* Aviso flotante al eliminar una aplicacion */
+.app-deleted-alert {
+    position: fixed;
+    top: 1rem;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 1080;
+    width: min(90vw, 28rem);
+    box-shadow: 0 10px 30px rgba(15, 23, 42, 0.15);
+}
+
+/* Variante 1: glass (combina con el boton de borrar) */
+.register-style-glass {
+    background: rgba(255, 255, 255, 0.9);
+    color: #1d4ed8;
+    border: 1px solid rgba(29, 78, 216, 0.18);
+    box-shadow: 0 6px 18px rgba(15, 23, 42, 0.12);
+    backdrop-filter: blur(4px);
+}
+
+.register-style-glass .register-app-icon {
+    background: #1d4ed8;
+    color: #ffffff;
+}
+
+.register-style-glass:hover,
+.register-style-glass:focus-visible {
+    background: #eff4ff;
+    box-shadow: 0 10px 22px rgba(29, 78, 216, 0.18);
+}
+
+/* Variante 2: outline */
+.register-style-outline {
+    background: transparent;
+    color: #1d4ed8;
+    border: 1.5px solid #1d4ed8;
+}
+
+.register-style-outline:hover,
+.register-style-outline:focus-visible {
+    background: #1d4ed8;
+    color: #ffffff;
+}
+
+/* Variante 3: suave */
+.register-style-soft {
+    background: #e0e9ff;
+    color: #1e3a8a;
+    border: 0;
+}
+
+.register-style-soft:hover,
+.register-style-soft:focus-visible {
+    background: #c9d8ff;
+}
+
+/* Variante 4: oscuro (combina con el navbar) */
+.register-style-dark {
+    background: #212529;
+    color: #ffffff;
+    border: 0;
+    box-shadow: 0 6px 18px rgba(15, 23, 42, 0.2);
+}
+
+.register-style-dark .register-app-icon {
+    background: rgba(255, 255, 255, 0.15);
+}
+
+.register-style-dark:hover,
+.register-style-dark:focus-visible {
+    background: #343a40;
+}
+
+/* Variante 5: solo icono redondo */
+.register-style-icon {
+    width: 2.6rem;
+    height: 2.6rem;
+    padding: 0;
+    justify-content: center;
+    background: #1d4ed8;
+    color: #ffffff;
+    border: 0;
+    box-shadow: 0 6px 18px rgba(29, 78, 216, 0.3);
+    font-size: 1.4rem;
+}
+
+.register-style-icon:hover,
+.register-style-icon:focus-visible {
+    background: #1e40af;
+}
